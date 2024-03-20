@@ -9,5 +9,9 @@ edition = "2021"
 name = "dft"
 path = "src/dft.rs"
 
+[[bin]]
+name = "fft"
+path = "src/fft.rs"
+
 [dependencies]
 num-complex = "0.4.5"

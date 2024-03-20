@@ -1,0 +1,89 @@
+\subsection{具体例}
+
+\subsubsection{$N = 2$ の場合}
+
+離散フーリエ変換は
+
+\begin{align}
+    \tilde{a}_k = \sum_{m = 0}^{1} W_2^{mk} a_m
+\end{align}
+
+と書けて$W_N$は
+
+\begin{align*}
+    W_2 = e^{-i\pi} = -1
+\end{align*}
+
+であるので
+
+\begin{align}
+    \begin{pmatrix}
+        \tilde{a}_0\\
+        \tilde{a}_1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        1 && 1 \\
+        1 && -1
+    \end{pmatrix}
+    \begin{pmatrix}
+        a_0\\
+        a_1
+    \end{pmatrix}
+\end{align}
+
+または
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_0 = a_0 + a_1\\
+        \tilde{a}_1 = a_0 - a_1
+    \end{cases}
+\end{align}
+
+\subsubsection{$N = 4$ の場合}
+
+\begin{align}
+    \tilde{a}_k = \sum_{m = 0}^{3} W_4^{mk} a_m
+\end{align}
+
+と書けて$W_N$は
+
+\begin{align*}
+    W_4 = e^{-i\frac{\pi}{2}} = -i
+\end{align*}
+
+であるので
+
+\begin{align}
+    \begin{pmatrix}
+        \tilde{a}_0 \\
+        \tilde{a}_1 \\
+        \tilde{a}_2 \\
+        \tilde{a}_3
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        1 && 1 && 1 && 1 \\
+        1 && -i && -1 && i \\
+        1 && -1 && 1 && -1 \\
+        1 && i && -1 && -i 
+    \end{pmatrix}
+    \begin{pmatrix}
+        a_0 \\
+        a_1 \\
+        a_2 \\
+        a_3
+    \end{pmatrix}
+\end{align}
+
+または
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_0 = (a_0 + a_2) + (a_1 + a_3) \\
+        \tilde{a}_1 = (a_0 - a_2) - i(a_1 - a_3) \\
+        \tilde{a}_2 = (a_0 + a_2) - (a_1 + a_3)\\   
+        \tilde{a}_3 = (a_0 - a_2) + i(a_1 - a_3)
+    \end{cases}
+\end{align}

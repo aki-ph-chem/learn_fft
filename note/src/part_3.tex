@@ -1,0 +1,29 @@
+\section{FFT}
+
+% 離散フーリエ変換を偶数・奇数で分割する
+
+\begin{align}
+    \tilde{a}_k &= \sum_{m = 0}^{N - 1} e^{-i\frac{2\pi}{N} km} a_m \\
+                &= \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N} k(2m)} a_{2m} 
+                   + \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N} k(2m + 1)} a_{2m + 1} \\ 
+                &= \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N} k(2m)} a_{2m} 
+                   + e^{-i\frac{2\pi}{N}k} \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N} k(2m)} a_{2m + 1} \\ 
+                &= \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N/2} km} a_{2m} 
+                   + e^{-i\frac{2\pi}{N}k} \sum_{m = 0}^{\frac{N}{2} - 1} e^{-i\frac{2\pi}{N/2} km} a_{2m + 1} \\ 
+                &= \tilde{a}_k^{e} + W_N^{k} \tilde{a}_k^{o}
+\end{align}
+
+ここで$W_N$ は
+
+\begin{align*}
+    W_N \equiv e^{-i\frac{2\pi}{N}} 
+\end{align*}
+
+で定義され、上付き添字の$e$,$o$はそれぞれ偶数・奇数を表す。
+
+% 偶数・奇数をマージするときに必要な式
+
+\begin{align}
+    \tilde{a}_{k + N/2} &= \sum_{m = 0}^{N - 1} e^{-i\frac{2\pi}{N} (k + N/2)m} a_m \\
+                        &= \sum_{m = 0}^{N - 1} e^{-i\frac{2\pi}{N}km} e^{-i\frac{2\pi}{N}(N/2)m}  a_m \\
+\end{align}

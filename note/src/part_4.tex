@@ -57,11 +57,50 @@
 偶数のとき
 
 \begin{align*}
-    \tilde{a}_k^{e} &= \sum_{m = 0}^1 W_2^{mk} a_{2m}
+    \tilde{a}_k^{e} &= \sum_{m = 0}^1 W_2^{mk} a_{2m} \quad(k = 0,2)
 \end{align*}
 
 奇数のとき
 
 \begin{align*}
-    \tilde{a}_k^{o} &= \sum_{m = 0}^1 W_2^{mk} a_{2m + 1}
+    \tilde{a}_k^{o} &= \sum_{m = 0}^1 W_2^{mk} a_{2m + 1} \quad(k = 1,3)
+\end{align*}
+
+であるが、それぞれの左辺は $N = 2$ の場合であるので、
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_0^{e} &= a_0 + a_2 \\ 
+        \tilde{a}_2^{e} &= a_0 - a_2 \\
+        \tilde{a}_1^{o} &= a_1 + a_3 \\
+        \tilde{a}_3^{o} &= a_1 - a_3
+    \end{cases}
+\end{align}
+
+ここで
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_k &= \tilde{a}_k^{e} + W_4^k \tilde{a}_k^{o} \quad(k = 0,2) \\
+        \tilde{a}_{k + 2} &= \tilde{a}_{k + 4/2} = \tilde{a}_k^{o} - W_4^k \tilde{a}_k^{o} \quad (k = 1,3) \\
+    \end{cases}
+\end{align}
+
+で,$W_4$ は
+
+\begin{align*}
+    W_4 &= e^{-i\frac{2\pi}{4}} = -i
+\end{align*}
+
+であるので
+
+\begin{align*}
+    \tilde{a}_0 &= \tilde{a}_0^e + W_4^0 \tilde{a}_1^o \\
+                &= (a_0 + a_2) + (a_1 + a_3) \\
+    \tilde{a}_1 &= \tilde{a}_2^e + W_4^1 \tilde{a}_3^o \\
+                &= (a_0 - a_2) - i (a_1 - a_3) \\
+    \tilde{a}_2 &= \tilde{a}_0^e - W_4^0 \tilde{a}_1^o \\
+                &= (a_0 + a_2) - (a_1 + a_3) \\
+    \tilde{a}_3 &= \tilde{a}_2^e - W_4^1 \tilde{a}_3^o \\
+                &= (a_0 - a_2) + i(a_1 - a_3)
 \end{align*}

@@ -1,0 +1,67 @@
+\subsection{具体例}
+
+\subsubsection{$N = 2$ のとき}
+
+\begin{align}
+    \tilde{a}_k = \sum_{m = 0}^1 W_2^{mk} a_m
+\end{align}
+
+より
+
+偶数のとき
+
+\begin{align*}
+    \tilde{a}_k^{e} &= \sum_{m = 0}^0 W_1^{mk} a_{2m} \\
+                    &= W_1^0 a_0
+\end{align*}
+
+奇数のとき
+
+\begin{align*}
+    \tilde{a}_k^{o} &= \sum_{m = 0}^0 W_1^{mk} a_{2m + 1} \\
+                    &= W_1^0 a_1
+\end{align*}
+
+であるので
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_0^{e} &= a_0 \\
+        \tilde{a}_1^{o} &= a_1 \\
+    \end{cases}
+\end{align}
+
+ここで
+
+\begin{align*}
+    W_2 &= e^{-i\pi} = -1
+\end{align*}
+
+であるので
+
+\begin{align}
+    \begin{cases}
+        \tilde{a}_0 &= a_0 + W_2^0 a_1 = a_0 + a_1 \\
+        \tilde{a}_1 &= \tilde{a}_{0 + 2/2} = a_0 - W_2^0 a_1 = a_0 - a_1
+    \end{cases}
+\end{align}
+
+\subsubsection{$N = 4$ のとき}
+
+\begin{align}
+    \tilde{a}_k = \sum_{m = 0}^3 W_4^{mk} a_m
+\end{align}
+
+より
+
+偶数のとき
+
+\begin{align*}
+    \tilde{a}_k^{e} &= \sum_{m = 0}^1 W_2^{mk} a_{2m}
+\end{align*}
+
+奇数のとき
+
+\begin{align*}
+    \tilde{a}_k^{o} &= \sum_{m = 0}^1 W_2^{mk} a_{2m + 1}
+\end{align*}

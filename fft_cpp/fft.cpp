@@ -73,6 +73,31 @@ void fft_rec_ref_2(std::vector<std::complex<double>>& array, bool is_reverse, st
     }
 }
 
+// ビット長を求める
+std::size_t len_bit(std::size_t n) {
+    std::size_t length_bit = 0;
+    while(n > 0) {
+        n >>= 1;
+        ++length_bit;
+    }
+
+    return length_bit;
+}
+
+// arrayの長さが2のべき乗でない場合は末尾に0を追加
+void zero_padding(std::vector<std::complex<double>>& array) {
+    auto n = array.size();
+
+    if(!(n&(n-1))){
+        return;
+    }
+
+    auto diff = (1 << len_bit(n)) - n;
+    for(auto i = 0; i < diff; ++i) {
+        array.push_back(0);
+    }
+}
+
 void show_result(std::vector<std::complex<double>>& result) {
     for(auto& v: result) {
         std::cout << v.real() << " + " << v.imag() << "i" << ",";
@@ -103,4 +128,17 @@ int main(void) {
     // 逆フーリエ変換
     fft_rec_ref_2(array_2, true, array_2.size());
     show_result(array_2);
+
+    std::vector<std::complex<double>> array_3 = {1.2, 1.3, 1.4, 1.5, 1.6};
+    // ゼロパディング
+    zero_padding(array_3);
+    show_result(array_3);
+
+    // フーリエ変換
+    fft_rec_ref_2(array_3, false, array_3.size());
+    show_result(array_3);
+
+    // 逆フーリエ変換
+    fft_rec_ref_2(array_3, true, array_3.size());
+    show_result(array_3);
 }

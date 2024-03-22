@@ -67,6 +67,30 @@ pub fn fft_rec_ref_2(array: &mut Vec<Complex64>, is_reverse: bool, len_original:
     }
 }
 
+// ビット長を求める
+fn len_bit(mut n: usize) -> usize {
+    let mut length_bit = 0;
+    while n > 0 {
+        n >>= 1;
+        length_bit += 1;
+    }
+
+    length_bit
+}
+
+// zero padding
+pub fn zero_padding(array: &mut Vec<Complex64>) {
+    let n = array.len();
+    if n & (n - 1) == 0 {
+        return;
+    }
+
+    let diff = (1 << len_bit(n)) - n;
+    for _i in 0..diff {
+        array.push(Complex64::new(0.0, 0.0));
+    }
+}
+
 fn main() {
     let mut case_3: Vec<Complex64> = vec![1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9]
         .iter()
@@ -112,4 +136,18 @@ fn main() {
 
     fft_rec_ref_2(&mut case_3, true, len_case_3);
     println!("case_3: {:?}", case_3);
+
+    let mut case_5: Vec<Complex64> = vec![1.2, 1.3, 1.4, 1.5, 1.6]
+        .iter()
+        .map(|x| Complex64::new(*x, 0.0))
+        .collect();
+    zero_padding(&mut case_5);
+    println!("case_5: {:?}", case_5);
+
+    let len_case_5 = case_5.len();
+    fft_rec_ref_2(&mut case_5, false, len_case_5);
+    println!("case_5: {:?}", case_5);
+
+    fft_rec_ref_2(&mut case_5, true, len_case_5);
+    println!("case_5: {:?}", case_5);
 }

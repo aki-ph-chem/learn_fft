@@ -13,5 +13,9 @@ path = "src/dft.rs"
 name = "fft"
 path = "src/fft.rs"
 
+[[bin]]
+name = "fft_loop"
+path = "src/fft_loop.rs"
+
 [dependencies]
 num-complex = "0.4.5"

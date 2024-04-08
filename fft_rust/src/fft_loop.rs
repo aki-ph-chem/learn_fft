@@ -2,7 +2,7 @@ use num_complex::Complex64;
 
 fn bit_reverse(mut x: usize, log2_n: usize) -> usize {
     let mut n = 0;
-    for i in 0..log2_n {
+    for _i in 0..log2_n {
         n <<= 1;
         n |= x & 1;
         x >>= 1;
@@ -12,9 +12,10 @@ fn bit_reverse(mut x: usize, log2_n: usize) -> usize {
 }
 
 // is_reverseがtrueなら逆フーリエ変換を実行(規格化も行う)
-fn fft_loop_ref(array: &mut Vec<Complex64>, log2_n: usize, is_reverse: bool) {
-    let n = 4;
-    let len_arry = Complex64::new(array.len() as f64, 0.0);
+fn fft_loop_ref(array: &mut Vec<Complex64>, is_reverse: bool) {
+    let n = array.len();
+    let log2_n = (n as f64).log2().floor() as usize;
+    let len_arry = Complex64::new(n as f64, 0.0);
 
     // bit reversal of the given array
     let buff = array.clone();
@@ -59,10 +60,23 @@ fn main() {
         .collect();
 
     // フーリエ変換
-    fft_loop_ref(&mut array, 2, false);
+    fft_loop_ref(&mut array, false);
     println!("array: {:?}", array);
 
     // 逆フーリエ変換
-    fft_loop_ref(&mut array, 2, true);
+    fft_loop_ref(&mut array, true);
     println!("array: {:?}", array);
+
+    let mut array: Vec<Complex64> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
+        .iter()
+        .map(|x| Complex64::new(*x, 0.0))
+        .collect();
+
+    // フーリエ変換
+    fft_loop_ref(&mut array, false);
+    println!("array:\n {:?}", array);
+
+    // 逆フーリエ変換
+    fft_loop_ref(&mut array, true);
+    println!("array:\n {:?}", array);
 }

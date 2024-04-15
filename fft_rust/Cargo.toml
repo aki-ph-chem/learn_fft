@@ -17,5 +17,9 @@ path = "src/fft.rs"
 name = "fft_loop"
 path = "src/fft_loop.rs"
 
+[[bin]]
+name = "conv_naive"
+path = "src/conv_naive.rs"
+
 [dependencies]
 num-complex = "0.4.5"

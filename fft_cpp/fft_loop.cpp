@@ -1,3 +1,4 @@
+#include <array>
 #include <iostream>
 #include <vector>
 #include <complex>
@@ -27,8 +28,9 @@ std::size_t bit_reverse(std::size_t x, std::size_t log2_n) {
 }
 
 // is_reverseがtrueなら逆フーリエ変換を実行(規格化も行う)
-void fft_loop_ref(std::vector<std::complex<double>>& array, std::size_t log2_n, bool is_reverse) {
-    std::size_t n = 4;
+void fft_loop_ref(std::vector<std::complex<double>>& array, bool is_reverse) {
+    auto n = array.size();
+    auto log2_n = std::log2(n);
     auto len_array = std::complex((double)array.size(), 0.0);
 
     // bit reversal of th given array
@@ -71,10 +73,10 @@ int main(void) {
 
     // フーリエ変換
     auto res_2 = array;
-    fft_loop_ref(res_2, 2, false);
+    fft_loop_ref(res_2, false);
     show_result(res_2);
 
     // 逆フーリエ変換
-    fft_loop_ref(res_2, 2, true);
+    fft_loop_ref(res_2, true);
     show_result(res_2);
 }

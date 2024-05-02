@@ -69,13 +69,14 @@ fn conv_fft(mut array_1: Vec<Complex64>, mut array_2: Vec<Complex64>) -> Vec<Com
     let (len_array_1, len_array_2) = (array_1.len(), array_2.len());
     let len_total = len_array_1 + len_array_2 - 1;
 
-    let (diff_array_len_1, diff_array_len_2) = if len_total & (len_total - 1) != 0 {
+    let (len_total, diff_array_len_1, diff_array_len_2) = if len_total & (len_total - 1) != 0 {
         (
-            1 << len_bit(len_total) - len_array_1,
-            1 << len_bit(len_total) - len_array_2,
+            1 << len_bit(len_total),
+            (1 << len_bit(len_total)) - len_array_1,
+            (1 << len_bit(len_total)) - len_array_2,
         )
     } else {
-        (len_total - len_array_1, len_total - len_array_2)
+        (len_total, len_total - len_array_1, len_total - len_array_2)
     };
 
     array_1 = vec![array_1, vec![Complex64::new(0.0, 0.0); diff_array_len_1]].concat();
@@ -100,7 +101,7 @@ fn main() {
             .iter()
             .map(|x| Complex64::new(*x as f64, 0.0))
             .collect::<Vec<Complex64>>(),
-        vec![5, 6, 7, 8, 9]
+        vec![5, 6, 7, 8]
             .iter()
             .map(|x| Complex64::new(*x as f64, 0.0))
             .collect::<Vec<Complex64>>(),
